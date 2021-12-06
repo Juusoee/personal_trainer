@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import { format } from 'date-fns'
+import Col from 'react-bootstrap/Col';
+import Moment from 'react-moment';
 import Container from 'react-bootstrap/Container';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
+import moment from 'moment';
 
-export default function Training () {
+export default function Training() {
 
     const APItrainings = 'https://customerrest.herokuapp.com/api/trainings';
 
     const [trainings, setTrainings] = useState([]);
 
-    useEffect(()=>fetchDataTrainings(),[])
+    useEffect(() => fetchDataTrainings(), [])
 
     const fetchDataTrainings = () => {
         fetch(APItrainings)
@@ -20,15 +22,21 @@ export default function Training () {
     }
 
 
-    const columns =  [
-        {headerName: "Activity", field: "activity", sortable:true, filter:true},
-        {headerName: "Duration (min)", field: "duration", sortable:true, filter:true},
-        {headerName: "Date", field: "date", sortable:true, filter:true}
+    const columns = [
+        { headerName: "Activity", field: "activity", sortable: true, filter: true },
+        { headerName: "Duration (min)", field: "duration", sortable: true, filter: true },
+        {
+            headerName: "Date", field: "date",
+            cellRenderer: (data) => {
+                return moment(data.date).format('DD/MM/YYYY');
+            }, sortable: true, filter: true
+        }
     ]
 
 
-    return(
-        <Container className="ag-theme-material" style={{ height: '1500px', width: '70%', margin: 'auto' }}>
+    return (
+
+        <Container className="ag-theme-material" style={{ height: '1500px', width: '40%', margin: 'auto' }}>
             <AgGridReact
                 columnDefs={columns}
                 rowData={trainings}>

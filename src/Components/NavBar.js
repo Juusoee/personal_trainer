@@ -5,11 +5,10 @@ import Nav from 'react-bootstrap/Nav';
 
 export default function Navigation() {
     return (
-        <Navbar  bg="dark" variant="dark">
+        <Navbar className="100vw" bg="dark" variant="dark">
             <Container>
-          
                 <Navbar.Brand className="m2" href="/">Personal Trainer</Navbar.Brand>
-                <Nav className="me-auto">
+                <Nav className="ml-auto">
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/training">Trainings</Nav.Link>
                     <Nav.Link href="/customers">Customers</Nav.Link>
