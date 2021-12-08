@@ -6,6 +6,7 @@ import Navbar from './Components/NavBar';
 import Home from './Components/Home';
 import Customers from './Components/Customer';
 import Trainings from './Components/Training';
+import Calendar from './Components/Calendar';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/training" element={<Trainings />} />
           <Route path="/customers" element={<Customers />} />
+          <Route path="/calendar" element={<Calendar />} />
         </Routes>
       </BrowserRouter>
     </Container>

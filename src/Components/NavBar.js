@@ -12,6 +12,7 @@ export default function Navigation() {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/training">Trainings</Nav.Link>
                     <Nav.Link href="/customers">Customers</Nav.Link>
+                    <Nav.Link href="/calendar">Calendar</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
