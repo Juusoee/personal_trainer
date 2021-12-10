@@ -68,7 +68,7 @@ export default function EditCustomer(props) {
             </EditIcon>
             {/* Dialog for customer edit starts here */}
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Add New Car</DialogTitle>
+                <DialogTitle>Edit customer</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
