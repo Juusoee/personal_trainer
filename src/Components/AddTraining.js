@@ -7,12 +7,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import moment from 'moment';
-
-
 
 export default function AddNewTrainign(props) {
 
+    /* useState definitions starts here */
     const [open, setOpen] = useState(false);
     const [trainings, setTrainings] = useState({
         activity: '',
@@ -21,7 +19,9 @@ export default function AddNewTrainign(props) {
         customer: props.customerID.links[1].href
         
     });
+    /* useState definitions ends here */
 
+    /* click handler starts here */
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -29,16 +29,21 @@ export default function AddNewTrainign(props) {
     const handleClose = () => {
         setOpen(false);
     };
+    /* click handler ends here */
 
+    /* Input handler starts here */
     const handleInputChange = (event) => {
         setTrainings({ ...trainings, [event.target.name]: event.target.value });
     };
+    /* Input handler ends here  */
 
+    /* Function to add training stars here */
     const addTraining = () => {
         console.log(trainings)
         props.saveTrainings(trainings);
         handleClose();
     };
+    /* Function to add training ends here */
 
     return (
         <Container>

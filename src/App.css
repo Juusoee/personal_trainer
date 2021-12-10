@@ -1,12 +1,20 @@
-.App {
-  text-align: center;
+html, .App {
+  height: 100%;
+  min-height: 100%;
+  background-color: #F5F5F5;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+a:-webkit-any-link {
+  text-decoration: none;
+  color: inherit;
+}
+.bg-light{
+  background-color: black!important;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -15,6 +23,10 @@
 .container-fluid{
   padding-right:0 !important;
   padding-left:0 !important;
+  background-color: #F5F5F5;
+}
+.ag-theme-material{
+  justify-content: center;
 }
 
 .App-header {

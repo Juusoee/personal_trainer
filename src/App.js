@@ -1,7 +1,6 @@
 import './App.css';
 import React from "react";
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
 import Navbar from './Components/NavBar';
 import Home from './Components/Home';
 import Customers from './Components/Customer';
@@ -10,7 +9,7 @@ import Calendar from './Components/Calendar';
 
 function App() {
   return (
-    <Container fluid>
+    <div className="App">
       <Navbar />
       <BrowserRouter>
         <Routes>
@@ -20,7 +19,7 @@ function App() {
           <Route path="/calendar" element={<Calendar />} />
         </Routes>
       </BrowserRouter>
-    </Container>
+    </div>
   );
 }
 

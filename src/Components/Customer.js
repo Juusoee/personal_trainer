@@ -1,35 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card'
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import AddCustomer from './AddCustomer';
 import EditCustomer from './EditCustomer';
 import AddTraining from './AddTraining';
 import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
-import moment from 'moment';
+import Footer from '../Components/Footer';
 
 
-export default function Customers(props) {
-    // APIkey for Customers
+export default function Customers() {
+    /* APIkey for Customers */
     const APIcustomer = 'https://customerrest.herokuapp.com/api/customers';
     const APItrainings = 'https://customerrest.herokuapp.com/api/trainings';
+    /* APIkey for Customers */
 
     /* useState & useEffect definitions starts */
     const [customers, setCustomers] = useState([]);
+    const [show, setShow] = useState(true);
     useEffect(() => fetchDataCustomers(), [])
     /* useState & useEffect definitions ends */
 
-    // API fetch for customer data
+    /* API fetch for customer data */
     const fetchDataCustomers = () => {
         fetch(APIcustomer)
             .then(res => res.json())
             .then(data => setCustomers(data.content))
     }
+    /* API fetch for customer data */
 
-    // Definitions for customer delete
+    /* CRUD Definitions */
     const deleteCustomer = (params) => {
         if (window.confirm('Are you sure?')) {
             fetch(params.links[1].href, { method: 'DELETE' })
@@ -38,7 +40,6 @@ export default function Customers(props) {
         }
     }
 
-    // Definitions for customer saving
     const saveCustomer = (customer) => {
         fetch(APIcustomer, {
             method: 'POST',
@@ -51,7 +52,6 @@ export default function Customers(props) {
             .catch(err => console.error(err))
     }
 
-    // Definitions for customer update
     const updateCustomer = (customer, params) => {
         fetch(params, {
             method: 'PUT',
@@ -64,7 +64,6 @@ export default function Customers(props) {
             .catch(err => console.error(err))
     }
 
-    /* Definitions for saving training starts */
     const saveTrainings = (trainings) => {
         fetch(APItrainings, {
             method: 'POST',
@@ -75,17 +74,10 @@ export default function Customers(props) {
         })
         console.log(trainings)
     }
-    /* Definitions for saving training ends*/
+    /* CRUD Definitions */
 
     /* Column definitions starts here */
     const columns = [
-        { headerName: "Firstname", field: "firstname", sortable: true, filter: true, width: 150, resizable: true },
-        { headerName: "Lastname", field: "lastname", sortable: true, filter: true, width: 150, resizable: true },
-        { headerName: "Street Address", field: "streetaddress", sortable: true, filter: true, width: 200, resizable: true },
-        { headerName: "Postal Code", field: "postcode", sortable: true, filter: true, width: 120, resizable: true },
-        { headerName: "City", field: "city", sortable: true, filter: true, width: 120, resizable: true },
-        { headerName: "Phone", field: "phone", sortable: true, filter: true, width: 150, resizable: true },
-        { headerName: "Email", field: "email", sortable: true, filter: true, width: 150, resizable: true },
         {
             headerName: "", width: 40,
             cellRendererFramework: (params) => <EditCustomer updateCustomer={updateCustomer} customer={params.data} />
@@ -93,23 +85,33 @@ export default function Customers(props) {
         {
             headerName: "", field: "links.href", width: 40,
             cellRendererFramework: (params) =>
-                <DeleteIcon variant="danger" size="sm" onClick={() => deleteCustomer(params.data)}>Delete</DeleteIcon>
+                <DeleteIcon size="sm" onClick={() => deleteCustomer(params.data)}>Delete</DeleteIcon>
         },
         {
             headerName: "", width: 60,
             cellRendererFramework: (params) =>
                 <AddTraining saveTrainings={saveTrainings} customerID={params.data} />
-        }
+        },
+        { headerName: "Firstname", field: "firstname", sortable: true, filter: true, resizable: true, width: 130 },
+        { headerName: "Lastname", field: "lastname", sortable: true, filter: true, resizable: true, width: 130 },
+        { headerName: "Street Address", field: "streetaddress", sortable: true, filter: true, resizable: true, width: 150 },
+        { headerName: "Postal Code", field: "postcode", sortable: true, filter: true, resizable: true, width: 140 },
+        { headerName: "City", field: "city", sortable: true, filter: true, resizable: true, width: 150 },
+        { headerName: "Phone", field: "phone", sortable: true, filter: true, resizable: true, width: 150 },
+        { headerName: "Email", field: "email", sortable: true, filter: true, resizable: true, width: 200 },
     ]
+    /* Column definitions ends here */
 
 
     return (
-        <Container className="ag-theme-material" style={{ height: '100vh', width: '100%', margin: 'auto' }}>
+        <div className="ag-theme-material mt-3" style={{ height: '900px', width: '85%', margin: 'auto' }}>
             <AddCustomer saveCustomer={saveCustomer} />
             <AgGridReact
                 columnDefs={columns}
                 rowData={customers}>
             </AgGridReact>
-        </Container>
+            <Footer />
+        </div>
+
     )
 }

@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row'
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import EditIcon from "@material-ui/icons/Edit";
+import EditIcon from '@material-ui/icons/Edit';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function EditCustomer(props) {
 
@@ -46,19 +48,21 @@ export default function EditCustomer(props) {
     };
     /* Click handler starts here */
 
-    // Input handler
+    /* Input handler */ 
     const handleInputChange = (event) => {
         setCustomer({ ...customer, [event.target.name]: event.target.value })
     }
+    /* Input handler */ 
 
-    // Definitions for customer update
+   /* Update customer */
     const updateCustomer = () => {
         props.updateCustomer(customer, props.customer.links[1].href)
         handleClose();
     }
+    /* Update customer */
 
     return (
-        <Container fluid>
+        <div>
             <EditIcon variant="info" size="sm" onClick={handleClickOpen}>
                 Edit
             </EditIcon>
@@ -144,6 +148,6 @@ export default function EditCustomer(props) {
                 </DialogActions>
             </Dialog>
             {/* Dialog for customer edit ends here */}
-        </Container>
+        </div>
     )
 }

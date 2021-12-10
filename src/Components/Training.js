@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import DeleteIcon from "@material-ui/icons/Delete";
+import Footer from '../Components/Footer';
+
+
+
 import moment from 'moment';
 
-export default function Training(props) {
+export default function Training() {
 
     // APIkey for trainings
     const APItrainings = 'https://customerrest.herokuapp.com/api/trainings';
@@ -37,8 +41,13 @@ export default function Training(props) {
 
     /* Column definitions starts here */
     const columns = [
-        { headerName: "Activity", field: "activity", sortable: true, filter: true, resizable: true  },
-        { headerName: "Duration (min)", field: "duration", sortable: true, filter: true, resizable: true  },
+        {
+            headerName: "", field: "links.href",
+            cellRendererFramework: (params) =>
+                <DeleteIcon variant="danger" size="sm" onClick={() => deleteTraining(params.data)}>Delete</DeleteIcon>
+        },
+        { headerName: "Activity", field: "activity", sortable: true, filter: true, resizable: true },
+        { headerName: "Duration (min)", field: "duration", sortable: true, filter: true, resizable: true },
         {
             headerName: "Date", field: "date",
             cellRenderer: (data) => {
@@ -46,23 +55,23 @@ export default function Training(props) {
 
             }, sortable: true, filter: true
         },
-        {headerName: "Customer", field: "name",sortable: true, filter: true, width: 150,resizable: true, valueGetter: function(params){
-            return params.data.customer.firstname + " " + params.data.customer.lastname;
-        }},
         {
-            headerName: "", field: "links.href", width: 100,
-            cellRendererFramework: (params) =>
-                <DeleteIcon variant="danger" size="sm" onClick={() => deleteTraining(params.data)}>Delete</DeleteIcon>
+            headerName: "Customer", field: "name", sortable: true, filter: true, resizable: true, valueGetter: function (params) {
+                return params.data.customer.firstname + " " + params.data.customer.lastname;
+            }
         },
+
     ]
     /* Column definitions ends here */
 
     return (
-        <Container className="ag-theme-material" style={{ height: '1500px', width: '100%', margin: 'auto' }}>
+
+        <div className="ag-theme-material mt-5" style={{ height: '600px', width: '70%', margin: 'auto' }} >
             <AgGridReact
                 columnDefs={columns}
                 rowData={trainings}>
             </AgGridReact>
-        </Container>
+            <Footer />
+        </div>
     )
 }

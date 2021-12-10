@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function AddCustomer(props) {
 
-    // useState definitions
+   /* useState definitions starts here */
     const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState(false);
     const [customer, setCustomer] = useState(
         {
             firstname: '',
@@ -23,6 +28,7 @@ export default function AddCustomer(props) {
             email: '',
             phone: '',
         })
+    /* useState definitions starts ends */
 
     /* Click handler starts here  */
     const handleClickOpen = () => {
@@ -30,28 +36,31 @@ export default function AddCustomer(props) {
     };
     const handleClose = () => {
         setOpen(false);
+        setMessage(false);
     };
     /* Click handler ends here  */
-    // Input handler
+
+    /* Input handler starts here  */
     const handleInputChange = (event) => {
         setCustomer({ ...customer, [event.target.name]: event.target.value })
     }
-    // Function to add customer
+    /* Input handler ends here  */
+
+    /* Function to add customer  */
     const addCustomer = () => {
         props.saveCustomer(customer)
         handleClose();
+        setMessage(true);
     }
 
     return (
-        <Container fluid>
-            {/* Button for customer add starts */}
-            <Button variant="secondary" className="mt-3" size="sm" onClick={handleClickOpen}>
+        <div>
+            <Button variant="secondary" className="mt-3 mb-3" size="sm" onClick={handleClickOpen}>
                 Add Customer
             </Button>
-            {/* Button for customer add ends */}
-            {/* Dialog for custome adding starts */}
+
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Add New Car</DialogTitle>
+                <DialogTitle>Add New Customer</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
@@ -130,7 +139,11 @@ export default function AddCustomer(props) {
                     <Button variant="primary" size="sm" onClick={addCustomer}>Save</Button>
                 </DialogActions>
             </Dialog>
-            {/* Dialog for custome adding starts */}
-        </Container>
+            <Snackbar open={message} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                    Customer added successfully!
+                </Alert>
+            </Snackbar>
+        </div>
     )
 }
