@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card'
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import AddCustomer from './AddCustomer';
@@ -19,7 +17,6 @@ export default function Customers() {
 
     /* useState & useEffect definitions starts */
     const [customers, setCustomers] = useState([]);
-    const [show, setShow] = useState(true);
     useEffect(() => fetchDataCustomers(), [])
     /* useState & useEffect definitions ends */
 
