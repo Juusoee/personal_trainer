@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import DeleteIcon from "@material-ui/icons/Delete";
