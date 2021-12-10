@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/github.io/personal_trainer/static/css/main.d384b45f.chunk.css",
+    "main.js": "/github.io/personal_trainer/static/js/main.512c83cf.chunk.js",
+    "main.js.map": "/github.io/personal_trainer/static/js/main.512c83cf.chunk.js.map",
+    "runtime-main.js": "/github.io/personal_trainer/static/js/runtime-main.b1b64501.js",
+    "runtime-main.js.map": "/github.io/personal_trainer/static/js/runtime-main.b1b64501.js.map",
+    "static/css/2.1e6ba167.chunk.css": "/github.io/personal_trainer/static/css/2.1e6ba167.chunk.css",
+    "static/js/2.62f57ebe.chunk.js": "/github.io/personal_trainer/static/js/2.62f57ebe.chunk.js",
+    "static/js/2.62f57ebe.chunk.js.map": "/github.io/personal_trainer/static/js/2.62f57ebe.chunk.js.map",
+    "static/js/3.575fbb63.chunk.js": "/github.io/personal_trainer/static/js/3.575fbb63.chunk.js",
+    "static/js/3.575fbb63.chunk.js.map": "/github.io/personal_trainer/static/js/3.575fbb63.chunk.js.map",
+    "index.html": "/github.io/personal_trainer/index.html",
+    "static/css/2.1e6ba167.chunk.css.map": "/github.io/personal_trainer/static/css/2.1e6ba167.chunk.css.map",
+    "static/css/main.d384b45f.chunk.css.map": "/github.io/personal_trainer/static/css/main.d384b45f.chunk.css.map",
+    "static/js/2.62f57ebe.chunk.js.LICENSE.txt": "/github.io/personal_trainer/static/js/2.62f57ebe.chunk.js.LICENSE.txt",
+    "static/media/logo.6ff804bc.png": "/github.io/personal_trainer/static/media/logo.6ff804bc.png",
+    "static/media/mainpage.ef1d8a2b.jpg": "/github.io/personal_trainer/static/media/mainpage.ef1d8a2b.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b1b64501.js",
+    "static/css/2.1e6ba167.chunk.css",
+    "static/js/2.62f57ebe.chunk.js",
+    "static/css/main.d384b45f.chunk.css",
+    "static/js/main.512c83cf.chunk.js"
+  ]
+}
